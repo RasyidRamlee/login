@@ -21,6 +21,6 @@ async function handleLogin(e) {
   if (error || !data) {
     document.getElementById("message").innerText = "Invalid email or password.";
   } else {
-    window.location.href = "https://example.com/dashboard"; // Replace with your actual page
+    window.location.href = "dashboard.html"; // Replace with your actual page
   }
 }
