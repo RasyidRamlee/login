@@ -7,7 +7,7 @@ const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 async function handleLogin(e) {
   e.preventDefault();
 
-  const email = document.getElementById("email").value.trim();
+  const email = document.getElementById("email").value.trim().toLowerCase();
   const password = document.getElementById("password").value.trim();
 
   const { data, error } = await supabase
@@ -18,9 +18,12 @@ async function handleLogin(e) {
     .single();
 
   if (error || !data) {
-    document.getElementById("message").innerText = "Invalid email or password.";
+    document.getElementById("message").innerText = "❌ Invalid email or password.";
+    console.error("Login error:", error);
   } else {
-    localStorage.setItem("employeeEmail", email);
+    localStorage.setItem("employeeEmail", data.email);
+    localStorage.setItem("employeeName", data.name);
+    localStorage.setItem("employeeID", data.id);
     window.location.href = "dashboard.html";
   }
 }
