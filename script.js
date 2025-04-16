@@ -1,6 +1,6 @@
 // Initialize Supabase
 const SUPABASE_URL = 'https://quvjsvhqfrrddkkumqnd.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // use your full key here
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1dmpzdmhxZnJyZGRra3VtcW5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ3Njk5MzksImV4cCI6MjA2MDM0NTkzOX0.cl4-CxwpnJrN3uDJu_IF74IvP0bA35oNcO-E5RjgwgI'; // use your full key here
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // Handle login
