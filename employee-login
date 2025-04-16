@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Login</title>
+  <script src="https://unpkg.com/@supabase/supabase-js"></script>
+</head>
+<body>
+  <h2>Login</h2>
+  <form id="login-form">
+    <input type="email" id="email" placeholder="Email" required /><br>
+    <input type="password" id="password" placeholder="Password" required /><br>
+    <button type="submit">Login</button>
+  </form>
+  <div id="message"></div>
+
+  <script>
+    const supabaseUrl = 'https://quvjsvhqfrrddkkumqnd.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1dmpzdmhxZnJyZGRra3VtcW5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ3Njk5MzksImV4cCI6MjA2MDM0NTkzOX0.cl4-CxwpnJrN3uDJu_IF74IvP0bA35oNcO-E5RjgwgI';
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        document.getElementById('message').innerText = error.message;
+      } else {
+        // Redirect or load dashboard
+        window.location.href = 'dashboard.html';
+      }
+    });
+  </script>
+</body>
+</html>
