@@ -35,6 +35,8 @@
         .eq('password', password)
         .single();
 
+      console.log("Login attempt:", { data, error });
+      
       if (error || !data) {
         document.getElementById('message').innerText = "Invalid email or password.";
       } else {
