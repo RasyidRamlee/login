@@ -10,12 +10,13 @@
   </style>
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script src="script.js"></script>
   <h2>Login</h2>
+  <form onsubmit="login(event)">
   <input type="text" id="email" placeholder="Email" />
   <input type="password" id="password" placeholder="Password" />
-  <button onclick="login()">Login</button>
+  <button type="submit">Login</button>
+</form>
   <div id="message"></div>
 
   <script>
@@ -23,7 +24,8 @@
     const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1dmpzdmhxZnJyZGRra3VtcW5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ3Njk5MzksImV4cCI6MjA2MDM0NTkzOX0.cl4-CxwpnJrN3uDJu_IF74IvP0bA35oNcO-E5RjgwgI";
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    async function login() {
+    async function login(e) {
+  e.preventDefault();
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
