@@ -10,6 +10,8 @@
   </style>
 </head>
 <body>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="script.js"></script>
   <h2>Login</h2>
   <input type="text" id="email" placeholder="Email" />
   <input type="password" id="password" placeholder="Password" />
@@ -17,7 +19,7 @@
   <div id="message"></div>
 
   <script>
-    const supabaseUrl = "https://quvjsvhqfrrddkkumqnd.supabase.coL";  // e.g., https://xyzcompany.supabase.co
+    const supabaseUrl = "https://quvjsvhqfrrddkkumqnd.supabase.co";  // e.g., https://xyzcompany.supabase.co
     const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1dmpzdmhxZnJyZGRra3VtcW5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ3Njk5MzksImV4cCI6MjA2MDM0NTkzOX0.cl4-CxwpnJrN3uDJu_IF74IvP0bA35oNcO-E5RjgwgI";
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
