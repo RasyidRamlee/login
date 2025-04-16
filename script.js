@@ -1,8 +1,5 @@
-// script.js
-
-// Initialize Supabase
 const SUPABASE_URL = 'https://quvjsvhqfrrddkkumqnd.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1dmpzdmhxZnJyZGRra3VtcW5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ3Njk5MzksImV4cCI6MjA2MDM0NTkzOX0.cl4-CxwpnJrN3uDJu_IF74IvP0bA35oNcO-E5RjgwgI';
+const SUPABASE_KEY = 'eyJhbGciOiJI...'; // your full key
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // Handle login
@@ -18,9 +15,12 @@ async function handleLogin(e) {
     .eq('password', password)
     .single();
 
+  console.log("Login attempt:", { data, error });
+
   if (error || !data) {
     document.getElementById("message").innerText = "Invalid email or password.";
   } else {
-    window.location.href = "dashboard.html"; // Replace with your actual page
+    localStorage.setItem("employeeEmail", email);
+    window.location.href = "dashboard.html";
   }
 }
