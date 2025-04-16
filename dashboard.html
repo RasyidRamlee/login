@@ -1,8 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head><title>Dashboard</title></head>
-  <body>
-    <h2>Welcome to the Employee Dashboard!</h2>
-    <p>You're successfully logged in.</p>
-  </body>
+<head>
+  <title>Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <style>
+    body { font-family: Arial; max-width: 600px; margin: 50px auto; padding: 20px; background: #f8f8f8; }
+    h2 { color: #333; }
+    #info { margin: 20px 0; }
+    button { padding: 10px 20px; background: #c00; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Welcome to Your Dashboard</h2>
+  <div id="info">Loading your information...</div>
+  <button onclick="logout()">Logout</button>
+
+  <script>
+    const supabaseUrl = "https://quvjsvhqfrrddkkumqnd.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF1dmpzdmhxZnJyZGRra3VtcW5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ3Njk5MzksImV4cCI6MjA2MDM0NTkzOX0.cl4-CxwpnJrN3uDJu_IF74IvP0bA35oNcO-E5RjgwgI";
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    const email = localStorage.getItem("employeeEmail");
+
+    if (!email) {
+      document.getElementById("info").innerText = "Not logged in.";
+    } else {
+      // Fetch user data from Supabase
+      supabase
+        .from("employees")
+        .select("*")
+        .eq("email", email)
+        .single()
+        .then(({ data, error }) => {
+          if (error || !data) {
+            document.getElementById("info").innerText = "User not found.";
+          } else {
+            document.getElementById("info").innerHTML = `
+              <p><strong>Name:</strong> ${data.name || "N/A"}</p>
+              <p><strong>Email:</strong> ${data.email}</p>
+              <p><strong>Location:</strong> ${data.location || "Not assigned"}</p>
+            `;
+          }
+        });
+    }
+
+    function logout() {
+      localStorage.removeItem("employeeEmail");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
 </html>
