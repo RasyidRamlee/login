@@ -37,11 +37,12 @@
         .single();
 
       if (error || !data) {
-        document.getElementById("message").innerText = "Invalid email or password";
-      } else {
-        // Redirect or show success
-        window.location.href = "dashboard.html";
-      }
+  document.getElementById("message").innerText = "Invalid email or password";
+} else {
+  // Save email to localStorage
+  localStorage.setItem("employeeEmail", email);
+  window.location.href = "dashboard.html";
+}
     }
   </script>
 </body>
